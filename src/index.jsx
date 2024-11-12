@@ -1,6 +1,6 @@
 import React from "react" 
 import ReactDOM from "react-dom"
-import { createBrowserRouter,RouterProvider,Outlet } from "react-router-dom"
+import {Outlet,HashRouter,Route,Routes} from "react-router-dom"
 import Header from "./Components/Header/Header"
 import Footer from "./Components/Footer/Footer"
 import Home from "./Components/Home/Home"
@@ -25,45 +25,19 @@ const App=()=>{
   );
 }
 
-const router=createBrowserRouter([
-  {
-    path:'/',
-    element:<App/>,
-    Children:[
-      {
-      element:<Home/>,
-      path:"/",
-      },
-      {
-        element:<About/>,
-        path:"/about",
-      },
-      {
-        element:<Contact/>,
-        path:"/contact",
-      },
-      {
-        element:<Gallery/>,
-        path:"/Gallery",
-      },
-      {
-        element:<Courses/>,
-        path:"/courses",
-      },
-      {
-        element:<Instructors/>,
-        path:"/instructors",
-      },
-      {
-        element:<Login/>,
-        path:"/login",
-      },
-      {
-        element:<Book/>,
-        path:"/book",
-      },    
-  ]
-  }
-])
-
-root.render(<RouterProvider router={router}/>)
+root.render(
+  <HashRouter>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route index element={<Home/>} />
+        <Route path="about" element={<About/>} />
+        <Route path="book" element={<Book />} />
+        <Route path="contact" element={<Contact/>} />
+        <Route path="courses" element={<Courses/>} />
+        <Route path="gallery" element={<Gallery/>} />
+        <Route path="instructors" element={<Instructors/>} />
+        <Route path="login" element={<Login/>} />
+      </Route>
+    </Routes>
+  </HashRouter>
+);
